@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="何浚翥的个人学术主页，聚焦城市经济学、健康经济学与文化经济学。"
+    />
+    <meta name="color-scheme" content="light" />
+    <title>何浚翥 | He Junzhu</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <button class="brand" type="button" data-view-target="home" aria-label="返回个人主页">
+        <span class="brand-cn" data-bind="meta.nameCn">何浚翥</span>
+        <span class="brand-en" lang="en" data-bind="meta.nameEn">He Junzhu</span>
+      </button>
+
+      <nav class="view-tabs" aria-label="个人主页栏目" role="tablist">
+        <button type="button" role="tab" data-view-target="home">主页</button>
+        <button type="button" role="tab" data-view-target="profile">研究</button>
+        <button type="button" role="tab" data-view-target="education">教育</button>
+        <button type="button" role="tab" data-view-target="research">成果</button>
+        <button type="button" role="tab" data-view-target="projects">项目</button>
+        <button type="button" role="tab" data-view-target="honors">荣誉与能力</button>
+        <button type="button" role="tab" data-view-target="contact">联系</button>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-button" id="print-button" type="button" title="导出一页 A4 PDF" aria-label="导出一页 A4 PDF">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z" />
+          </svg>
+        </button>
+        <button class="icon-button" id="admin-button" type="button" title="进入管理模式" aria-label="进入管理模式">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="m15.5 7.5 2-2a3.536 3.536 0 1 1 5 5l-8 8-4 1 1-4zM14 9l3 3M8 6H3a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2v-5" />
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="admin-bar" id="admin-bar" hidden>
+      <div>
+        <strong>管理模式</strong>
+        <span>内容修改尚未保存</span>
+      </div>
+      <div class="admin-actions">
+        <button class="text-button" id="discard-button" type="button">撤销更改</button>
+        <button class="text-button" id="exit-admin-button" type="button">退出</button>
+        <button class="text-button primary" id="save-button" type="button">保存并导出 PDF</button>
+      </div>
+    </div>
+
+    <main id="app">
+      <section class="view-panel home-panel" id="view-home" data-view="home" role="tabpanel">
+        <div class="home-copy">
+          <p class="eyebrow" lang="en" data-bind="meta.eyebrow"></p>
+          <h1 data-bind="meta.nameCn"></h1>
+          <p class="english-name" lang="en" data-bind="meta.nameEn"></p>
+          <p class="home-intro" data-bind="meta.intro"></p>
+          <div class="home-actions">
+            <button class="command-button primary" type="button" data-view-target="research">查看研究成果</button>
+            <button class="command-button" type="button" data-view-target="profile">研究画像</button>
+            <a class="command-button" data-bind-href="meta.email" data-href-prefix="mailto:" data-bind="meta.email"></a>
+          </div>
+        </div>
+        <div class="home-summary" id="home-summary" aria-label="个人学术概览"></div>
+        <button class="panel-edit" type="button" data-edit="meta" aria-label="编辑主页" title="编辑主页">编辑</button>
+      </section>
+
+      <section class="view-panel" id="view-profile" data-view="profile" role="tabpanel" hidden>
+        <header class="panel-heading">
+          <div>
+            <p class="section-kicker" lang="en">Research Profile</p>
+            <h2 data-bind="profile.headline"></h2>
+          </div>
+          <button class="panel-edit" type="button" data-edit="profile">编辑本页</button>
+        </header>
+        <p class="lead-copy" data-bind="profile.summary"></p>
+        <div class="focus-grid" id="focus-grid"></div>
+      </section>
+
+      <section class="view-panel" id="view-education" data-view="education" role="tabpanel" hidden>
+        <header class="panel-heading">
+          <div>
+            <p class="section-kicker" lang="en">Education</p>
+            <h2>教育背景</h2>
+          </div>
+          <button class="add-button" type="button" data-add="education" title="新增教育经历" aria-label="新增教育经历">＋</button>
+        </header>
+        <div class="timeline" id="education-list"></div>
+        <div class="exchange-band">
+          <div>
+            <p class="section-kicker" lang="en">Exchange & Fieldwork</p>
+            <h3>交流与田野经历</h3>
+          </div>
+          <div class="exchange-list" id="exchange-list"></div>
+          <button class="add-button compact" type="button" data-add="exchange" title="新增交流经历" aria-label="新增交流经历">＋</button>
+        </div>
+      </section>
+
+      <section class="view-panel" id="view-research" data-view="research" role="tabpanel" hidden>
+        <header class="panel-heading">
+          <div>
+            <p class="section-kicker" lang="en">Selected Research</p>
+            <h2>科研成果</h2>
+          </div>
+          <button class="add-button" type="button" data-add="research" title="新增论文" aria-label="新增论文">＋</button>
+        </header>
+        <div class="research-grid" id="research-list"></div>
+      </section>
+
+      <section class="view-panel" id="view-projects" data-view="projects" role="tabpanel" hidden>
+        <header class="panel-heading">
+          <div>
+            <p class="section-kicker" lang="en">Projects & Conferences</p>
+            <h2>项目与会议</h2>
+          </div>
+        </header>
+        <div class="project-layout">
+          <div>
+            <div class="subheading-row">
+              <h3>项目参与</h3>
+              <button class="add-button compact" type="button" data-add="projects" title="新增项目" aria-label="新增项目">＋</button>
+            </div>
+            <div class="project-list" id="project-list"></div>
+          </div>
+          <div>
+            <div class="subheading-row">
+              <h3>学术会议</h3>
+              <button class="add-button compact" type="button" data-add="conferences" title="新增会议" aria-label="新增会议">＋</button>
+            </div>
+            <ol class="conference-list" id="conference-list"></ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="view-panel" id="view-honors" data-view="honors" role="tabpanel" hidden>
+        <header class="panel-heading">
+          <div>
+            <p class="section-kicker" lang="en">Honors & Skills</p>
+            <h2>荣誉奖励与能力</h2>
+          </div>
+        </header>
+        <div class="subheading-row">
+          <h3>荣誉奖励</h3>
+          <button class="add-button compact" type="button" data-add="honors" title="新增荣誉" aria-label="新增荣誉">＋</button>
+        </div>
+        <div class="honor-tags" id="honor-list"></div>
+        <div class="subheading-row skills-heading">
+          <h3>能力与实践</h3>
+          <button class="add-button compact" type="button" data-add="skills" title="新增能力" aria-label="新增能力">＋</button>
+        </div>
+        <div class="skills-grid" id="skill-list"></div>
+      </section>
+
+      <section class="view-panel contact-panel" id="view-contact" data-view="contact" role="tabpanel" hidden>
+        <header class="panel-heading">
+          <div>
+            <p class="section-kicker" lang="en">Contact</p>
+            <h2 data-bind="contact.headline"></h2>
+          </div>
+          <button class="panel-edit" type="button" data-edit="contact">编辑联系信息</button>
+        </header>
+        <div class="contact-links">
+          <a data-bind-href="meta.email" data-href-prefix="mailto:" data-bind="meta.email"></a>
+          <a data-bind-href="meta.phoneLink" data-href-prefix="tel:" data-bind="meta.phone"></a>
+        </div>
+      </section>
+    </main>
+
+    <section id="print-resume" aria-hidden="true"></section>
+
+    <dialog class="modal" id="auth-dialog">
+      <form method="dialog" id="auth-form">
+        <div class="modal-heading">
+          <div>
+            <p class="section-kicker" lang="en">Owner Access</p>
+            <h2>进入管理模式</h2>
+          </div>
+          <button class="icon-button quiet" type="button" data-close-dialog="auth-dialog" aria-label="关闭">×</button>
+        </div>
+        <p class="modal-note">
+          输入拥有此仓库“Contents: Read and write”权限的 GitHub 细粒度令牌。令牌只保存在本页内存中，刷新或关闭页面后即清除。
+        </p>
+        <label>
+          GitHub 令牌
+          <input id="github-token" type="password" required autocomplete="off" spellcheck="false" placeholder="github_pat_…" />
+        </label>
+        <label>
+          仓库
+          <input id="github-repository" type="text" required value="Olen-hjz777/CV-chinese" spellcheck="false" />
+        </label>
+        <label>
+          分支
+          <input id="github-branch" type="text" required value="main" spellcheck="false" />
+        </label>
+        <p class="form-message" id="auth-message" role="status"></p>
+        <div class="modal-actions">
+          <button class="text-button" type="button" data-close-dialog="auth-dialog">取消</button>
+          <button class="text-button primary" type="submit">验证并进入</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog class="modal editor-modal" id="editor-dialog">
+      <form method="dialog" id="editor-form">
+        <div class="modal-heading">
+          <div>
+            <p class="section-kicker" lang="en">Content Editor</p>
+            <h2 id="editor-title">编辑内容</h2>
+          </div>
+          <button class="icon-button quiet" type="button" data-close-dialog="editor-dialog" aria-label="关闭">×</button>
+        </div>
+        <div class="editor-fields" id="editor-fields"></div>
+        <input id="editor-kind" type="hidden" />
+        <input id="editor-index" type="hidden" />
+        <div class="modal-actions split">
+          <button class="text-button danger" id="delete-item-button" type="button">删除</button>
+          <div>
+            <button class="text-button" type="button" data-close-dialog="editor-dialog">取消</button>
+            <button class="text-button primary" type="submit">应用更改</button>
+          </div>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="cv-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
