@@ -7,6 +7,7 @@
   let adminSession = null;
   let dirty = false;
   let toastTimer = null;
+  const githubApiVersion = "2022-11-28";
 
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
@@ -558,19 +559,43 @@
     return btoa(binary);
   }
 
+  function githubErrorMessage(error, repository) {
+    const target = repository || adminSession?.repository || "目标仓库";
+    if (error.status === 401) {
+      return "令牌无效或已过期，请重新生成 GitHub 细粒度令牌";
+    }
+    if (error.status === 403) {
+      return `令牌没有 ${target} 的写入权限。请将该仓库加入 Repository access，并把 Contents 设为 Read and write`;
+    }
+    if (error.status === 404) {
+      return `GitHub 未向此令牌开放 ${target}。公开仓库可被只读访问，因此进入管理模式不代表已有写权限；请检查 Resource owner、Repository access 与 Contents: Read and write`;
+    }
+    if (error.status === 409) {
+      return "远端内容刚被其他操作更新，请刷新页面后重新进入管理模式再保存";
+    }
+    if (error.status === 422) {
+      return "GitHub 拒绝了本次提交，请检查分支保护规则或稍后重试";
+    }
+    return error.message || "GitHub 请求失败";
+  }
+
   async function githubRequest(url, options = {}) {
+    const { token = adminSession?.token, ...requestOptions } = options;
     const response = await fetch(url, {
-      ...options,
+      ...requestOptions,
       headers: {
         Accept: "application/vnd.github+json",
-        Authorization: `Bearer ${adminSession?.token ?? options.token}`,
-        "X-GitHub-Api-Version": "2022-11-28",
-        ...(options.headers ?? {})
+        Authorization: `Bearer ${token}`,
+        "X-GitHub-Api-Version": githubApiVersion,
+        ...(requestOptions.headers ?? {})
       }
     });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok) {
-      throw new Error(payload.message || `GitHub 请求失败（${response.status}）`);
+      const error = new Error(payload.message || `GitHub 请求失败（${response.status}）`);
+      error.status = response.status;
+      error.requestId = response.headers.get("x-github-request-id");
+      throw error;
     }
     return payload;
   }
@@ -589,22 +614,38 @@
     }
 
     try {
-      const dataPath = cv.admin?.dataPath ?? "cv-data.js";
-      const response = await fetch(
-        `https://api.github.com/repos/${repository}/contents/${encodeURIComponent(dataPath).replaceAll("%2F", "/")}?ref=${encodeURIComponent(branch)}`,
-        {
-          headers: {
-            Accept: "application/vnd.github+json",
-            Authorization: `Bearer ${token}`,
-            "X-GitHub-Api-Version": "2022-11-28"
-          }
-        }
+      const viewer = await githubRequest("https://api.github.com/user", { token });
+      const repositoryData = await githubRequest(
+        `https://api.github.com/repos/${repository}`,
+        { token }
       );
-      const payload = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(payload.message || "验证失败");
-      enterAdminMode({ token, repository, branch, dataPath });
+      const permissions = repositoryData.permissions;
+      if (
+        permissions &&
+        !permissions.push &&
+        !permissions.maintain &&
+        !permissions.admin
+      ) {
+        const error = new Error("令牌只有读取权限");
+        error.status = 403;
+        throw error;
+      }
+
+      const dataPath = cv.admin?.dataPath ?? "cv-data.js";
+      const path = encodeURIComponent(dataPath).replaceAll("%2F", "/");
+      await githubRequest(
+        `https://api.github.com/repos/${repositoryData.full_name}/contents/${path}?ref=${encodeURIComponent(branch)}`,
+        { token }
+      );
+      enterAdminMode({
+        token,
+        repository: repositoryData.full_name,
+        branch,
+        dataPath,
+        login: viewer.login
+      });
     } catch (error) {
-      message.textContent = `${error.message}。请确认令牌有该仓库 Contents 读写权限。`;
+      message.textContent = `${githubErrorMessage(error, repository)}。无需开启 Gists 或 Workflows。`;
     }
   }
 
@@ -638,7 +679,7 @@
       renderPrintResume();
       setTimeout(() => window.print(), 350);
     } catch (error) {
-      showToast(`${error.message}。请检查令牌的 Contents 写入权限。`, "error");
+      showToast(`${githubErrorMessage(error)}。`, "error");
     } finally {
       button.disabled = false;
       button.textContent = "保存并导出 PDF";

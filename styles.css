@@ -256,6 +256,31 @@ a {
   max-width: 760px;
 }
 
+.home-aside {
+  display: grid;
+  gap: 16px;
+  align-content: center;
+  min-width: 0;
+}
+
+.home-portrait {
+  width: min(220px, 76%);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid rgba(37, 52, 44, 0.16);
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(244, 220, 229, 0.62), rgba(220, 235, 220, 0.7));
+  box-shadow: 0 18px 42px rgba(37, 52, 44, 0.16);
+}
+
+.home-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .eyebrow,
 .section-kicker {
   margin: 0 0 8px;
@@ -719,6 +744,7 @@ h4 {
 .modal {
   width: min(620px, calc(100% - 28px));
   max-height: min(820px, calc(100vh - 36px));
+  overflow-y: auto;
   padding: 0;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -752,6 +778,28 @@ h4 {
   margin-bottom: 20px;
   color: var(--muted);
   font-size: 0.94rem;
+}
+
+.auth-requirements {
+  display: grid;
+  gap: 3px;
+  margin: -4px 0 20px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--moss);
+  background: linear-gradient(110deg, rgba(220, 235, 220, 0.62), rgba(244, 220, 229, 0.38));
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+.auth-requirements strong {
+  color: var(--ink);
+}
+
+.auth-requirements small {
+  margin-top: 3px;
+  color: var(--plum);
+  font-size: 0.8rem;
 }
 
 .modal label {
@@ -877,13 +925,23 @@ h4 {
     grid-template-columns: 1fr;
   }
 
+  .home-aside {
+    grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .home-portrait {
+    width: 100%;
+  }
+
   .home-summary {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .summary-item {
-    grid-template-columns: 1fr;
-    gap: 7px;
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
   }
 
   .research-grid,
@@ -961,6 +1019,14 @@ h4 {
 
   .home-summary {
     grid-template-columns: 1fr;
+  }
+
+  .home-aside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .home-portrait {
+    width: min(190px, 62vw);
   }
 
   .summary-item {

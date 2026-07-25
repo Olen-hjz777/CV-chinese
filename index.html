@@ -67,7 +67,19 @@
             <a class="command-button" data-bind-href="meta.email" data-href-prefix="mailto:" data-bind="meta.email"></a>
           </div>
         </div>
-        <div class="home-summary" id="home-summary" aria-label="个人学术概览"></div>
+        <aside class="home-aside" aria-label="个人照片与学术概览">
+          <figure class="home-portrait">
+            <img
+              src="assets/portrait-he-junzhu.jpg"
+              alt="何浚翥学术证件照"
+              width="675"
+              height="900"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </figure>
+          <div class="home-summary" id="home-summary" aria-label="个人学术概览"></div>
+        </aside>
         <button class="panel-edit" type="button" data-edit="meta" aria-label="编辑主页" title="编辑主页">编辑</button>
       </section>
 
@@ -184,8 +196,15 @@
           <button class="icon-button quiet" type="button" data-close-dialog="auth-dialog" aria-label="关闭">×</button>
         </div>
         <p class="modal-note">
-          输入拥有此仓库“Contents: Read and write”权限的 GitHub 细粒度令牌。令牌只保存在本页内存中，刷新或关闭页面后即清除。
+          输入 GitHub 细粒度令牌。令牌只保存在本页内存中，刷新或关闭页面后即清除。
         </p>
+        <div class="auth-requirements">
+          <strong>令牌最低配置</strong>
+          <span>Resource owner：Olen-hjz777</span>
+          <span>Repository access：CV-chinese</span>
+          <span>Repository permissions：Contents → Read and write</span>
+          <small>无需开启 Gists；仅修改工作流文件时才需要 Workflows。</small>
+        </div>
         <label>
           GitHub 令牌
           <input id="github-token" type="password" required autocomplete="off" spellcheck="false" placeholder="github_pat_…" />
