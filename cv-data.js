@@ -99,7 +99,7 @@ window.CV_DATA = {
     },
     {
       "role": "第一作者",
-      "status": "FIeld TOP, Revise & Resubmit",
+      "status": "Field TOP, Revise & Resubmit",
       "statusType": "review",
       "title": "Boomerang of “love”? Son preference and parental health depletion",
       "journal": "Journal of Health Economics",
@@ -191,7 +191,8 @@ window.CV_DATA = {
     }
   ],
   "contact": {
-    "headline": "欢迎交流城市经济学、健康经济学和文化经济学。"
+    "headline": "欢迎交流城市经济学、健康经济学和文化经济学。",
+    "motto": "昨日已经过去，明日尚未来临，今日仍是未知 ——《未知的首尔》"
   },
   "admin": {
     "repository": "Olen-hjz777/CV-chinese",
