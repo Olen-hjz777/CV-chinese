@@ -1,20 +1,20 @@
 window.CV_DATA = {
   "meta": {
     "nameCn": "何浚翥",
-    "nameEn": "He Junzhu",
+    "nameEn": "Junzhu He",
     "eyebrow": "Urban · Health · Cultural Economics",
-    "intro": "城市经济学在读，研究兴趣聚焦城市经济学、健康经济学和文化经济学。",
+    "intro": "城市经济学在读，研究兴趣聚焦城市经济学、健康经济学和文化经济学。研究重点为城市劳动力市场、居民身心健康、精英行为和流行文化。",
     "email": "hejunzhu777@163.com",
     "phone": "+86 188-4558-9327",
     "phoneLink": "+8618845589327"
   },
   "profile": {
-    "headline": "在城市、健康与文化之间寻找证据",
-    "summary": "研究兴趣聚焦城市经济学、健康经济学和文化经济学。既关注城市蔓延、低碳转型和新型城镇化等宏观空间议题，也通过 CFPS、上市公司与区县面板数据观察家庭、企业和地方政策的微观响应。",
+    "headline": "在城市、健康与文化中寻找证据",
+    "summary": "研究兴趣聚焦城市经济学、健康经济学和文化经济学。研究重点为城市劳动力市场、居民身心健康、精英行为和流行文化。",
     "focus": [
       "城市经济学：城市空间、经济活力与空间溢出",
-      "健康经济学：家庭福祉、教育投资与公共政策",
-      "文化经济学：文化交流、意识形态与区域发展",
+      "健康经济学：代际支持、健康投资与公共政策",
+      "文化经济学：社会规范、流行文化与个体行为",
       "应用微观数据与政策评估"
     ]
   },
@@ -49,13 +49,13 @@ window.CV_DATA = {
   "research": [
     {
       "role": "第一作者",
-      "status": "CSSCI 已发表",
+      "status": "AMI权威 & CSSCI 已发表",
       "statusType": "published",
       "title": "战略性产业政策与企业对外直接投资",
       "journal": "《国际贸易问题》",
-      "summary": "围绕“中国制造 2025”战略，使用上市公司数据与双重差分方法，分析产业政策如何影响企业 OFDI 概率与规模。",
+      "summary": "围绕“中国制造 2025”战略，使用上市公司数据与连续双重差分方法，分析产业政策如何影响企业 OFDI 概率与规模。",
       "language": "zh",
-      "featured": false
+      "featured": true
     },
     {
       "role": "通讯作者",
@@ -65,7 +65,7 @@ window.CV_DATA = {
       "journal": "Journal of Urban Planning and Development",
       "summary": "以 2003-2020 年中国 284 个城市数据评估城市蔓延对经济活力的影响，识别劳动力集聚、人力资本提升与消费扩张等作用路径。",
       "language": "en",
-      "featured": true
+      "featured": false
     },
     {
       "role": "第二作者",
@@ -99,13 +99,23 @@ window.CV_DATA = {
     },
     {
       "role": "第一作者",
-      "status": "Under Review",
+      "status": "FIeld TOP, Revise & Resubmit",
       "statusType": "review",
       "title": "Boomerang of “love”? Son preference and parental health depletion",
       "journal": "Journal of Health Economics",
-      "summary": "基于首胎性别准随机性与省际性别比差异，研究儿子偏好如何通过地位竞争损耗父母健康；结果显示，性别比上升会显著恶化首胎女儿父母的身体、心理与主观健康。",
+      "summary": "基于首胎性别准随机性与省际性别比差异，研究儿子偏好如何通过生理损耗与代际资源错配损耗父母健康。",
       "language": "en",
-      "featured": false
+      "featured": true
+    },
+    {
+      "role": "第一作者",
+      "status": "Field TOP, Reject & Resubmit",
+      "statusType": "review",
+      "title": "Cultural amenities, spatial sorting, and the dynamics of migration settlement",
+      "journal": "Regional Science and Urban Economics",
+      "summary": "结合CMDS和微观POIs数据，利用多项离散模型探讨了个体迁移背后的文化设施吸引力。在此基础上，进一步明晰了“工资—房租”双重溢价以及长期留居意愿的迁移动态演变。",
+      "language": "en",
+      "featured": true
     }
   ],
   "projects": [
