@@ -116,6 +116,16 @@ window.CV_DATA = {
       "summary": "结合CMDS和微观POIs数据，利用多项离散模型探讨了个体迁移背后的文化设施吸引力。在此基础上，进一步明晰了“工资—房租”双重溢价以及长期留居意愿的迁移动态演变。",
       "language": "en",
       "featured": true
+    },
+    {
+      "role": "通讯作者",
+      "status": "Revision",
+      "statusType": "review",
+      "title": "Formative Democratic Exposures and Elite Power Accumulation",
+      "journal": "European Economic Review  (To be determined)",
+      "summary": "利用“民主转型事件—出生队列”的断点回归模型，分析早期民主接触是否成为后期政治精英进行权力集中/多项任职时的有效约束条件。",
+      "language": "en",
+      "featured": true
     }
   ],
   "projects": [
@@ -177,7 +187,7 @@ window.CV_DATA = {
     },
     {
       "title": "实践",
-      "body": "曾参与中国人民大学国家发展与战略研究院、开源证券、京东科技、香樟青苗与达沃斯论坛相关实践。"
+      "body": "曾参与中国人民大学国家发展与战略研究院、开源证券、京东科技、香樟青苗、达沃斯论坛等相关实践/实习。"
     }
   ],
   "contact": {
