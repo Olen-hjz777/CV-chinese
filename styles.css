@@ -1,3 +1,49 @@
+@font-face {
+  font-family: "CV Fangzheng Kai";
+  src:
+    local("FZKai-Z03"),
+    local("FZKTK--GBK1-0"),
+    local("FZKai-Z03S"),
+    local("方正楷体_GBK"),
+    local("方正楷体");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CV Garamond";
+  src:
+    local("Garamond"),
+    local("Garamond-Regular"),
+    local("EB Garamond Regular");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CV Garamond";
+  src:
+    local("Garamond Italic"),
+    local("Garamond-Italic"),
+    local("EB Garamond Italic");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "CV Garamond";
+  src:
+    local("Garamond Bold"),
+    local("Garamond-Bold"),
+    local("EB Garamond Bold");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light;
   --rose: #f4dce5;
@@ -13,8 +59,8 @@
   --gold: #ae7f38;
   --line: rgba(37, 52, 44, 0.15);
   --shadow: 0 18px 50px rgba(54, 76, 62, 0.12);
-  --font-cn: "FZKai-Z03S", "FZKai", "方正楷体_GBK", "方正楷体", "STKaiti", "Kaiti SC", "KaiTi", serif;
-  --font-en: Garamond, "EB Garamond", "Cormorant Garamond", Georgia, serif;
+  --font-cn: "CV Fangzheng Kai", "FZKai-Z03", "Kaiti SC", "STKaiti", "KaiTi", serif;
+  --font-en: "CV Garamond", Garamond, "EB Garamond", Georgia, serif;
 }
 
 * {
@@ -37,6 +83,7 @@ body {
   font-size: 17px;
   line-height: 1.7;
   letter-spacing: 0;
+  font-synthesis: none;
 }
 
 body::selection {
@@ -253,20 +300,28 @@ a {
 }
 
 .home-copy {
+  width: 100%;
   max-width: 760px;
+  min-width: 0;
 }
 
-.home-aside {
+.home-identity {
   display: grid;
-  gap: 16px;
-  align-content: center;
+  grid-template-columns: minmax(0, 1fr) clamp(128px, 12vw, 164px);
+  gap: clamp(22px, 4vw, 48px);
+  align-items: end;
+  min-width: 0;
+  margin-bottom: 24px;
+}
+
+.home-name-block {
   min-width: 0;
 }
 
 .home-portrait {
-  width: min(220px, 76%);
+  width: 100%;
   aspect-ratio: 3 / 4;
-  margin: 0 auto;
+  margin: 0;
   overflow: hidden;
   border: 1px solid rgba(37, 52, 44, 0.16);
   border-radius: 8px;
@@ -303,6 +358,7 @@ h2,
 h3,
 h4 {
   font-family: var(--font-cn);
+  font-weight: 400;
   letter-spacing: 0;
 }
 
@@ -310,10 +366,11 @@ h1 {
   margin-bottom: 0;
   font-size: clamp(4.4rem, 9vw, 7.8rem);
   line-height: 1;
+  -webkit-text-stroke: 0.2px currentColor;
 }
 
 .english-name {
-  margin-bottom: 24px;
+  margin-bottom: 0;
   color: var(--plum);
   font-size: clamp(1.5rem, 3vw, 2.35rem);
   font-style: italic;
@@ -677,6 +734,22 @@ h4 {
   overflow-wrap: anywhere;
 }
 
+.contact-motto {
+  max-width: 920px;
+  margin: 20px 0 0;
+  padding: 20px 22px;
+  border-left: 4px solid var(--plum);
+  background: linear-gradient(110deg, rgba(244, 220, 229, 0.56), rgba(220, 235, 220, 0.64));
+  color: var(--ink);
+  font-size: 1.12rem;
+  line-height: 1.75;
+}
+
+.contact-motto strong {
+  font-weight: 700;
+  -webkit-text-stroke: 0.12px currentColor;
+}
+
 .panel-edit,
 .add-button,
 .item-edit {
@@ -920,28 +993,21 @@ h4 {
     align-items: flex-start;
   }
 
-  .home-panel,
+  .home-panel {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .project-layout {
     grid-template-columns: 1fr;
   }
 
-  .home-aside {
-    grid-template-columns: minmax(170px, 220px) minmax(0, 1fr);
-    align-items: center;
-  }
-
-  .home-portrait {
-    width: 100%;
-  }
-
   .home-summary {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .summary-item {
-    grid-template-columns: 100px minmax(0, 1fr);
-    gap: 12px;
-    padding: 16px;
+    grid-template-columns: 1fr;
+    gap: 7px;
   }
 
   .research-grid,
@@ -997,7 +1063,7 @@ h4 {
   }
 
   h1 {
-    font-size: clamp(3.8rem, 20vw, 5.5rem);
+    font-size: clamp(3.3rem, 18vw, 4.5rem);
   }
 
   h2 {
@@ -1021,12 +1087,14 @@ h4 {
     grid-template-columns: 1fr;
   }
 
-  .home-aside {
-    grid-template-columns: minmax(0, 1fr);
+  .home-identity {
+    grid-template-columns: minmax(0, 1fr) 84px;
+    gap: 12px;
+    margin-bottom: 22px;
   }
 
   .home-portrait {
-    width: min(190px, 62vw);
+    width: 84px;
   }
 
   .summary-item {

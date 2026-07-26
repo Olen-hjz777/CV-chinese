@@ -2,8 +2,16 @@
   "use strict";
 
   const clone = (value) => JSON.parse(JSON.stringify(value));
-  let cv = clone(window.CV_DATA);
-  let savedCv = clone(window.CV_DATA);
+  const defaultMotto = "昨日已经过去，明日尚未来临，今日仍是未知 ——《未知的首尔》";
+
+  function withDefaults(data) {
+    data.contact ??= {};
+    data.contact.motto ||= defaultMotto;
+    return data;
+  }
+
+  let cv = withDefaults(clone(window.CV_DATA));
+  let savedCv = clone(cv);
   let adminSession = null;
   let dirty = false;
   let toastTimer = null;
@@ -36,7 +44,8 @@
     contact: {
       title: "编辑联系页",
       fields: [
-        { name: "headline", label: "联系页标题", type: "textarea", required: true }
+        { name: "headline", label: "联系页标题", type: "textarea", required: true },
+        { name: "motto", label: "座右铭", type: "textarea", required: true }
       ]
     },
     education: {

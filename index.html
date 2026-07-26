@@ -58,8 +58,22 @@
       <section class="view-panel home-panel" id="view-home" data-view="home" role="tabpanel">
         <div class="home-copy">
           <p class="eyebrow" lang="en" data-bind="meta.eyebrow"></p>
-          <h1 data-bind="meta.nameCn"></h1>
-          <p class="english-name" lang="en" data-bind="meta.nameEn"></p>
+          <div class="home-identity">
+            <div class="home-name-block">
+              <h1 data-bind="meta.nameCn"></h1>
+              <p class="english-name" lang="en" data-bind="meta.nameEn"></p>
+            </div>
+            <figure class="home-portrait">
+              <img
+                src="assets/portrait-he-junzhu.jpg"
+                alt="何浚翥学术证件照"
+                width="675"
+                height="900"
+                decoding="async"
+                fetchpriority="high"
+              />
+            </figure>
+          </div>
           <p class="home-intro" data-bind="meta.intro"></p>
           <div class="home-actions">
             <button class="command-button primary" type="button" data-view-target="research">查看研究成果</button>
@@ -67,19 +81,7 @@
             <a class="command-button" data-bind-href="meta.email" data-href-prefix="mailto:" data-bind="meta.email"></a>
           </div>
         </div>
-        <aside class="home-aside" aria-label="个人照片与学术概览">
-          <figure class="home-portrait">
-            <img
-              src="assets/portrait-he-junzhu.jpg"
-              alt="何浚翥学术证件照"
-              width="675"
-              height="900"
-              decoding="async"
-              fetchpriority="high"
-            />
-          </figure>
-          <div class="home-summary" id="home-summary" aria-label="个人学术概览"></div>
-        </aside>
+        <div class="home-summary" id="home-summary" aria-label="个人学术概览"></div>
         <button class="panel-edit" type="button" data-edit="meta" aria-label="编辑主页" title="编辑主页">编辑</button>
       </section>
 
@@ -181,6 +183,9 @@
           <a data-bind-href="meta.email" data-href-prefix="mailto:" data-bind="meta.email"></a>
           <a data-bind-href="meta.phoneLink" data-href-prefix="tel:" data-bind="meta.phone"></a>
         </div>
+        <blockquote class="contact-motto">
+          <strong data-bind="contact.motto">昨日已经过去，明日尚未来临，今日仍是未知 ——《未知的首尔》</strong>
+        </blockquote>
       </section>
     </main>
 
