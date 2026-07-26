@@ -3,7 +3,7 @@ window.CV_DATA = {
     "nameCn": "何浚翥",
     "nameEn": "He Junzhu",
     "eyebrow": "Urban · Health · Cultural Economics",
-    "intro": "城市经济学在读，研究兴趣聚焦城市经济学、健康经济学和文化经济学，以微观计量和城市面板数据描绘政策如何改变城市、企业与家庭。",
+    "intro": "城市经济学在读，研究兴趣聚焦城市经济学、健康经济学和文化经济学。",
     "email": "hejunzhu777@163.com",
     "phone": "+86 188-4558-9327",
     "phoneLink": "+8618845589327"
