@@ -69,7 +69,7 @@ window.CV_DATA = {
     },
     {
       "role": "第二作者",
-      "status": "CSSCI 已发表",
+      "status": "CSSCI 已发表 & 人大复印报刊资料转载",
       "statusType": "published",
       "title": "新型城镇化试点政策与包容性绿色增长",
       "journal": "《经济问题探索》",
