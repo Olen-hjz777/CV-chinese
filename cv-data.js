@@ -99,7 +99,7 @@ window.CV_DATA = {
     },
     {
       "role": "第一作者",
-      "status": "Field TOP, Revise & Resubmit",
+      "status": "Field TOP, Revise",
       "statusType": "review",
       "title": "Boomerang of “love”? Son preference and parental health depletion",
       "journal": "Journal of Health Economics",
@@ -119,10 +119,10 @@ window.CV_DATA = {
     },
     {
       "role": "通讯作者",
-      "status": "Revision",
+      "status": "Revise",
       "statusType": "review",
       "title": "Formative Democratic Exposures and Elite Power Accumulation",
-      "journal": "European Economic Review  (To be determined)",
+      "journal": "Working Paper",
       "summary": "利用“民主转型事件—出生队列”的断点回归模型，分析早期民主接触是否成为后期政治精英进行权力集中/多项任职时的有效约束条件。",
       "language": "en",
       "featured": true
